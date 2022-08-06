@@ -1,7 +1,21 @@
+import { MapPin, ShoppingCart } from "phosphor-react";
+import logo from "../assets/logo.svg";
+
 export function Header() {
   return (
-    <header>
-      <h1>Header</h1>
+    <header className="flex justify-between items-center py-8 px-40">
+      <img src={logo} alt="Coffee Delivery Logo" />
+
+      <div className="flex justify-end items-center gap-3">
+        <div className="flex items-center gap-1 text-sm bg-purple-light text-purple-dark p-2 rounded-lg">
+          <MapPin size={22} weight="fill" className="text-purple" />
+          <span>Porto Alegre, RS</span>
+        </div>
+
+        <div className="flex items-center bg-yellow-light rounded-lg p-2">
+          <ShoppingCart size={22} weight="fill" className="text-yellow-dark" />
+        </div>
+      </div>
     </header>
   );
 }
