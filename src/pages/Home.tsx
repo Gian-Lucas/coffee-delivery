@@ -86,14 +86,22 @@ export function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex justify-center items-center text-purple bg-base-button         p-2 gap-1.5 rounded-md">
-                  <Minus size={14} weight="bold" />
+                  <Minus
+                    className="transition-colors hover:text-purple-dark cursor-pointer"
+                    size={14}
+                    weight="bold"
+                  />
                   <span className="text-base-title">1</span>
-                  <Plus size={14} weight="bold" />
+                  <Plus
+                    className="transition-colors hover:text-purple-dark cursor-pointer"
+                    size={14}
+                    weight="bold"
+                  />
                 </div>
                 <div>
                   <button
-                    className="bg-purple-dark p-2 rounded-md text-base-card"
-                    title="Go to shopping cart"
+                    className="transition-colors bg-purple-dark hover:bg-purple p-2 rounded-md text-base-card"
+                    title="Mostrar carrinho"
                   >
                     <ShoppingCart size={22} weight="fill" />
                   </button>
