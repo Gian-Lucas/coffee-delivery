@@ -1,5 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import cupOfCoffee from "../assets/cup-coffee.svg";
+import { ItemWithText } from "../components/ItemWithText";
 
 export function Home() {
   return (
@@ -16,32 +17,28 @@ export function Home() {
         </div>
         <div className="flex gap-10">
           <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-yellow-dark text-background rounded-full w-fit ">
-                <ShoppingCart weight="fill" />
-              </div>
-              <span>Compra simples e segura</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-yellow text-background rounded-full w-fit ">
-                <Timer weight="fill" />
-              </div>
-              <span>Entrega rápida e rastreada</span>
-            </div>
+            <ItemWithText
+              bg="bg-yellow-dark"
+              text="Compra simples e segura"
+              icon={<ShoppingCart weight="fill" />}
+            />
+            <ItemWithText
+              bg="bg-yellow"
+              text="Entrega rápida e rastreada"
+              icon={<Timer weight="fill" />}
+            />
           </div>
           <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-base-text text-background rounded-full w-fit ">
-                <Package weight="fill" />
-              </div>
-              <span>Embalagem mantém o café intacto</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple text-background rounded-full w-fit ">
-                <Coffee weight="fill" />
-              </div>
-              <span>O café chega quentinho até você</span>
-            </div>
+            <ItemWithText
+              bg="bg-base-text"
+              text="Embalagem mantém o café intacto"
+              icon={<Package weight="fill" />}
+            />
+            <ItemWithText
+              bg="bg-purple"
+              text="O café chega quentinho até você"
+              icon={<Coffee weight="fill" />}
+            />
           </div>
         </div>
       </div>
