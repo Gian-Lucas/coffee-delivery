@@ -5,7 +5,9 @@ export function DefaultLayout() {
   return (
     <>
       <Header />
-      <Outlet />
+      <div className="mx-auto mt-20 max-w-[1120px]">
+        <Outlet />
+      </div>
     </>
   );
 }

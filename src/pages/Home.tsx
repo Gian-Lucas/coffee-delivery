@@ -12,7 +12,7 @@ import { ItemWithText } from "../components/ItemWithText";
 
 export function Home() {
   return (
-    <div className="flex flex-col gap-32 mx-auto mt-20 max-w-[1120px]">
+    <div className="flex flex-col gap-32">
       <section className="flex gap-14 items-center">
         <div className="flex flex-col gap-16">
           <div>
