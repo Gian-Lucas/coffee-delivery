@@ -8,7 +8,7 @@ export function Success() {
         <h1 className="text-yellow-dark text-[2rem] font-header font-extrabold">
           Uhu! Pedido confirmado
         </h1>
-        <p className="text-base-subtitle text-xl">
+        <p className="text-base-subtitle text-lg">
           Agora é só aguardar que logo o café chegará até você
         </p>
       </div>
