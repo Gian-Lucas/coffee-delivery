@@ -16,10 +16,10 @@ export function Home() {
       <section className="flex gap-14 items-center">
         <div className="flex flex-col gap-16">
           <div>
-            <h1 className="text-5xl font-header font-extrabold text-base-title leading-tight">
+            <h1 className="text-4xl font-header font-extrabold text-base-title leading-tight">
               Encontre o café perfeito <br /> para qualquer hora do dia
             </h1>
-            <span className="text-base-subtitle text-xl mt-4 block">
+            <span className="text-base-subtitle text-lg mt-4 block">
               Com o Coffee Delivery você recebe seu café onde estiver, a
               qualquer hora
             </span>
@@ -85,7 +85,7 @@ export function Home() {
                 </strong>
               </div>
               <div className="flex items-center gap-2">
-                <div className="flex justify-center items-center text-purple bg-base-button         p-2 gap-1.5 rounded-md">
+                <div className="flex justify-center items-center text-purple bg-base-button         p-2 gap-2 rounded-md">
                   <Minus
                     className="transition-colors hover:text-purple-dark cursor-pointer"
                     size={14}

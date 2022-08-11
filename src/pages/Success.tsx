@@ -3,7 +3,7 @@ import coffeeBike from "../assets/coffee-bike.svg";
 
 export function Success() {
   return (
-    <main className="mt-20">
+    <main>
       <div>
         <h1 className="text-yellow-dark text-[2rem] font-header font-extrabold">
           Uhu! Pedido confirmado

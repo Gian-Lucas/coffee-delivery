@@ -9,7 +9,7 @@ interface ItemWithTextProps {
 
 export function ItemWithText({ icon, text, bg }: ItemWithTextProps) {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex text-sm items-center gap-3">
       <div
         className={`p-2 bg-base-text text-background rounded-full w-fit ${bg}`}
       >

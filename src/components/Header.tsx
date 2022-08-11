@@ -3,7 +3,7 @@ import logo from "../assets/logo.svg";
 
 export function Header() {
   return (
-    <header className="flex justify-between items-center py-8 px-40">
+    <header className="flex justify-between items-center max-w-[1120px] mx-auto py-8 px-10">
       <img src={logo} alt="Coffee Delivery Logo" />
 
       <div className="flex justify-end items-center gap-3">
