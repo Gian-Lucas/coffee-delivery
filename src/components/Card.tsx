@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import coffee from "../assets/coffee.svg";
+import { PlusOrMinus } from "./PlusOrMinus";
 
 export function Card() {
   return (
@@ -30,28 +31,13 @@ export function Card() {
           </strong>
         </div>
         <div className="flex items-center gap-2">
-          <div
-            className="flex justify-center items-center text-purple bg-base-button         
-          p-2 gap-2 rounded-md"
-          >
-            <Minus
-              className="transition-colors hover:text-purple-dark cursor-pointer"
-              size={14}
-              weight="bold"
-            />
-            <span className="text-base-title">1</span>
-            <Plus
-              className="transition-colors hover:text-purple-dark cursor-pointer"
-              size={14}
-              weight="bold"
-            />
-          </div>
+          <PlusOrMinus />
           <div>
             <button
               className="transition-colors bg-purple-dark hover:bg-purple p-2 rounded-md text-base-card"
               title="Mostrar carrinho"
             >
-              <ShoppingCart size={22} weight="fill" />
+              <ShoppingCart size={14} weight="fill" />
             </button>
           </div>
         </div>
