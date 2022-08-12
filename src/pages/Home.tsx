@@ -1,6 +1,5 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import cupOfCoffee from "../assets/cup-coffee.svg";
-import { Card } from "../components/Card";
 import { Coffees } from "../components/Coffees";
 import { ItemWithText } from "../components/ItemWithText";
 

@@ -1,4 +1,4 @@
-import { MapPin, ShoppingCart } from "phosphor-react";
+import { MapPin } from "phosphor-react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { CartHeader } from "./CartHeader";

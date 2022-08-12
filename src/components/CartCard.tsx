@@ -1,4 +1,3 @@
-import { Minus, Plus, Trash } from "phosphor-react";
 import { Coffee } from "../contexts/CartContext";
 import { PlusOrMinus } from "./PlusOrMinus";
 import { RemoveFromCart } from "./RemoveFromCart";
