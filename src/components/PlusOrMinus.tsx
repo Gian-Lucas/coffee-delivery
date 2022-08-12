@@ -5,8 +5,9 @@ import { CartContext, Coffee } from "../contexts/CartContext";
 type PlusOrMinusProps = Coffee;
 
 export function PlusOrMinus(coffee: PlusOrMinusProps) {
-  const { id, quantity } = coffee;
-  const { addOneCoffeeUnity, removeOneCoffeeUnity } = useContext(CartContext);
+  const { id } = coffee;
+  const { addOneCoffeeUnity, removeOneCoffeeUnity, cartCoffees } =
+    useContext(CartContext);
 
   function handleAddOneCoffeeUnity() {
     addOneCoffeeUnity(coffee);
@@ -14,6 +15,8 @@ export function PlusOrMinus(coffee: PlusOrMinusProps) {
   function handleRemoveOneCoffeeUnity() {
     removeOneCoffeeUnity(id);
   }
+
+  const quantity = cartCoffees.find((cof) => cof.id === id)?.quantity;
 
   return (
     <div className="flex justify-center items-center text-xs text-purple bg-base-button p-2 gap-3 rounded-md">
@@ -27,7 +30,7 @@ export function PlusOrMinus(coffee: PlusOrMinusProps) {
           weight="bold"
         />
       </button>
-      <span className="text-base-title">{quantity}</span>
+      <span className="text-base-title">{quantity ? quantity : 0}</span>
       <button
         onClick={handleAddOneCoffeeUnity}
         title="Aumentar uma unidade desse item"
