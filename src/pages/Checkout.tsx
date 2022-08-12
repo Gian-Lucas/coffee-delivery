@@ -3,19 +3,25 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Minus,
   Money,
-  Plus,
-  Trash,
 } from "phosphor-react";
-import { CartCard } from "../components/CartCard";
+import { FormEvent } from "react";
+import { CartCards } from "../components/CartCards";
 import { Input } from "../components/Input";
 import { InputGridContainer } from "../components/InputGridContainer";
 import { Select } from "../components/Select";
 
 export function Checkout() {
+  function handleConfirmSubmit(e: FormEvent) {
+    e.preventDefault();
+  }
+
   return (
-    <form className="grid grid-cols-5 gap-8" action="">
+    <form
+      onSubmit={handleConfirmSubmit}
+      className="grid grid-cols-5 gap-8"
+      action=""
+    >
       <div className="col-span-3">
         <h1 className="font-header font-bold text-lg text-base-subtitle">
           Complete seu pedido
@@ -100,8 +106,7 @@ export function Checkout() {
         </h1>
 
         <div className="flex flex-col gap-6 bg-base-card p-10 mt-4 rounded-tl-md rounded-br-md rounded-tr-[2.75rem] rounded-bl-[2.75rem]">
-          <CartCard />
-          <CartCard />
+          <CartCards />
 
           <div className="flex flex-col gap-3">
             <div className="flex justify-between">
