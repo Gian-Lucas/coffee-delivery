@@ -54,7 +54,24 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function addOneCoffeeUnity(coffee: Coffee) {
-    console.log(coffee.id);
+    const isCoffeeInCart = cartCoffees.find((cof) => cof.id === coffee.id);
+
+    if (!isCoffeeInCart) {
+      addCoffeeToCart(coffee);
+      return;
+    }
+
+    const cartCoffeesWithOneCoffeeUnityAdded = cartCoffees.map((cof) => {
+      if (cof.id === coffee.id) {
+        return {
+          ...cof,
+          quantity: cof.quantity + 1,
+        };
+      }
+      return { ...cof };
+    });
+
+    setCartCoffees(cartCoffeesWithOneCoffeeUnityAdded);
   }
   function removeOneCoffeeUnity(coffeeId: string) {
     const coffeeToRemoveOneUnity = cartCoffees.find(
@@ -68,7 +85,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return;
     }
 
-    const cartCoffeesWithOneCoffeeUnityUpdated = cartCoffees.map((coffee) => {
+    const cartCoffeesWithOneCoffeeUnityRemoved = cartCoffees.map((coffee) => {
       if (coffee.id === coffeeId) {
         return {
           ...coffee,
@@ -78,7 +95,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return { ...coffee };
     });
 
-    setCartCoffees(cartCoffeesWithOneCoffeeUnityUpdated);
+    setCartCoffees(cartCoffeesWithOneCoffeeUnityRemoved);
   }
 
   return (
