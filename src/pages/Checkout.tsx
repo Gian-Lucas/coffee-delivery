@@ -8,7 +8,6 @@ import {
   Plus,
   Trash,
 } from "phosphor-react";
-import coffee from "../assets/coffee.svg";
 import { CartCard } from "../components/CartCard";
 import { Input } from "../components/Input";
 import { InputGridContainer } from "../components/InputGridContainer";

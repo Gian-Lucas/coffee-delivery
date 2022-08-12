@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from "phosphor-react";
-import coffee from "../assets/coffee.svg";
+import coffee from "../assets/coffee01.svg";
 import { PlusOrMinus } from "./PlusOrMinus";
 
 export function CartCard() {
@@ -13,7 +13,7 @@ export function CartCard() {
           <strong>R$ 9,90</strong>
         </div>
         <div className="flex gap-2 mt-2">
-          <PlusOrMinus />
+          <PlusOrMinus quantity={1} />
           <div className="flex justify-center items-center text-xs text-purple bg-base-button px-2 gap-1.5 rounded-md cursor-pointer transition-colors hover:bg-base-hover">
             <Trash size={14} weight="bold" />
             <span className="text-base-text">REMOVER</span>
