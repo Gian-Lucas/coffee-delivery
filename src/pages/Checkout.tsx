@@ -11,6 +11,7 @@ import {
 import coffee from "../assets/coffee.svg";
 import { Input } from "../components/Input";
 import { InputGridContainer } from "../components/InputGridContainer";
+import { Select } from "../components/Select";
 
 export function Checkout() {
   return (
@@ -74,29 +75,21 @@ export function Checkout() {
           </header>
 
           <div className="mt-8 grid grid-cols-3 gap-3">
-            {true ? (
-              <div className="hover:bg-base-hover transition-colors cursor-pointer text-purple flex items-center gap-3 p-3 border border-purple bg-base-button rounded-md">
-                <CreditCard size={16} />
-                <span className="text-base-text text-xs">
-                  CARTÃO DE CRÉDITO
-                </span>
-              </div>
-            ) : (
-              <div className="hover:bg-base-hover transition-colors cursor-pointer text-purple flex items-center gap-3 p-3 bg-base-button rounded-md">
-                <CreditCard size={16} />
-                <span className="text-base-text text-xs">
-                  CARTÃO DE CRÉDITO
-                </span>
-              </div>
-            )}
-            <div className="hover:bg-base-hover transition-colors cursor-pointer text-purple flex items-center gap-3 p-3 bg-base-button rounded-md">
-              <Money size={16} />
-              <span className="text-base-text text-xs">CARTÃO DE DÉBITO</span>
-            </div>
-            <div className="hover:bg-base-hover transition-colors cursor-pointer text-purple flex items-center gap-3 p-3 bg-base-button rounded-md">
-              <Bank size={16} />
-              <span className="text-base-text text-xs">DINHEIRO</span>
-            </div>
+            <Select
+              icon={<CreditCard size={16} />}
+              title="CARTÃO DE CRÉDITO"
+              isSelected={false}
+            />
+            <Select
+              icon={<Money size={16} />}
+              title="CARTÃO DE DÉBITO"
+              isSelected={true}
+            />
+            <Select
+              icon={<Bank size={16} />}
+              title="DINHEIRO"
+              isSelected={false}
+            />
           </div>
         </div>
       </div>
