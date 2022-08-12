@@ -40,7 +40,7 @@ export function Coffees() {
   return (
     <div className="my-14 grid grid-cols-4 gap-x-8 gap-y-10">
       {coffees.map((coffee) => {
-        return <Card {...coffee} />;
+        return <Card key={coffee.id} coffee={coffee} />;
       })}
     </div>
   );

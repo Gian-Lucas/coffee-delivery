@@ -1,8 +1,7 @@
-import { Minus, Plus, ShoppingCart } from "phosphor-react";
-import coffee from "../assets/coffee.svg";
+import { AddToCart } from "./AddToCard";
 import { PlusOrMinus } from "./PlusOrMinus";
 
-interface CardProps {
+interface Coffee {
   id: string;
   img: string;
   types: Array<string>;
@@ -12,15 +11,13 @@ interface CardProps {
   quantity: number;
 }
 
-export function Card({
-  id,
-  img,
-  types,
-  title,
-  description,
-  price,
-  quantity,
-}: CardProps) {
+interface CardProps {
+  coffee: Coffee;
+}
+
+export function Card({ coffee }: CardProps) {
+  const { id, img, types, title, description, price, quantity } = coffee;
+
   return (
     <div className="w-64 h-[19.375rem] bg-base-card text-center rounded-tl-md rounded-br-md rounded-tr-[2.25rem] rounded-bl-[2.25rem]">
       <img src={img} alt="" className="mx-auto -mt-5" />
@@ -28,6 +25,7 @@ export function Card({
         {types.map((type) => {
           return (
             <span
+              key={type}
               className="py-1 px-2 bg-yellow-light text-yellow-dark rounded-[100px] 
         font-bold text-[.625rem]"
             >
@@ -49,15 +47,8 @@ export function Card({
           </strong>
         </div>
         <div className="flex items-center gap-2">
-          <PlusOrMinus quantity={quantity} />
-          <div>
-            <button
-              className="transition-colors bg-purple-dark hover:bg-purple p-2 rounded-md text-base-card"
-              title="Mostrar carrinho"
-            >
-              <ShoppingCart size={14} weight="fill" />
-            </button>
-          </div>
+          <PlusOrMinus quantity={quantity} coffeeId={id} />
+          <AddToCart coffee={coffee} />
         </div>
       </div>
     </div>
