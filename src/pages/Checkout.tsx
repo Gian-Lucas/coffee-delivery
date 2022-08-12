@@ -9,6 +9,8 @@ import {
   Trash,
 } from "phosphor-react";
 import coffee from "../assets/coffee.svg";
+import { Input } from "../components/Input";
+import { InputGridContainer } from "../components/InputGridContainer";
 
 export function Checkout() {
   return (
@@ -34,41 +36,25 @@ export function Checkout() {
           </header>
 
           <div className="mt-8 flex flex-col gap-4">
-            <div className="grid grid-cols-8 gap-3">
-              <input
-                className="col-span-3 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-                placeholder="CEP"
-              />
-            </div>
-            <input
-              className="rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-              placeholder="Rua"
-            />
-            <div className="grid grid-cols-8 gap-3">
-              <input
-                className="col-span-3 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-                placeholder="Número"
-              />
-              <input
-                className="col-span-5 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
+            <InputGridContainer>
+              <Input className="col-span-3" placeholder="CEP" />
+            </InputGridContainer>
+
+            <Input placeholder="Rua" />
+
+            <InputGridContainer>
+              <Input className="col-span-3" placeholder="Número" />
+              <Input
+                className="col-span-5"
                 placeholder="Complemento (opcional)"
               />
-            </div>
+            </InputGridContainer>
 
-            <div className="grid grid-cols-8 gap-3">
-              <input
-                className="col-span-3 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-                placeholder="Bairro"
-              />
-              <input
-                className="col-span-4 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-                placeholder="Cidade"
-              />
-              <input
-                className="col-span-1 rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm"
-                placeholder="UF"
-              />
-            </div>
+            <InputGridContainer>
+              <Input className="col-span-3" placeholder="Bairro" />
+              <Input className="col-span-4" placeholder="Cidade" />
+              <Input className="col-span-1" placeholder="UF" />
+            </InputGridContainer>
           </div>
         </div>
 
