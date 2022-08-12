@@ -9,6 +9,7 @@ import { FormEvent } from "react";
 import { CartCards } from "../components/CartCards";
 import { Input } from "../components/Input";
 import { InputGridContainer } from "../components/InputGridContainer";
+import { Prices } from "../components/Prices";
 import { Select } from "../components/Select";
 
 export function Checkout() {
@@ -109,18 +110,7 @@ export function Checkout() {
           <CartCards />
 
           <div className="flex flex-col gap-3">
-            <div className="flex justify-between">
-              <span className="text-sm">Total de itens</span>
-              <span>R$ 29,70</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm">Entrega</span>
-              <span>R$ 3,50</span>
-            </div>
-            <div className="flex justify-between">
-              <strong className="text-xl">Total</strong>
-              <strong className="text-xl">R$ 33,20</strong>
-            </div>
+            <Prices />
 
             <button className="mt-3 text-sm text-white bg-yellow py-3 px-2 rounded-md transition-colors hover:bg-yellow-dark font-bold">
               CONFIRMAR PEDIDO
