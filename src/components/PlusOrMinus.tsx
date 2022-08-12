@@ -1,20 +1,18 @@
 import { Minus, Plus } from "phosphor-react";
 import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext, Coffee } from "../contexts/CartContext";
 
-interface PlusOrMinusProps {
-  quantity: number;
-  coffeeId: string;
-}
+type PlusOrMinusProps = Coffee;
 
-export function PlusOrMinus({ quantity, coffeeId }: PlusOrMinusProps) {
+export function PlusOrMinus(coffee: PlusOrMinusProps) {
+  const { id, quantity } = coffee;
   const { addOneCoffeeUnity, removeOneCoffeeUnity } = useContext(CartContext);
 
   function handleAddOneCoffeeUnity() {
-    addOneCoffeeUnity(coffeeId);
+    addOneCoffeeUnity(coffee);
   }
   function handleRemoveOneCoffeeUnity() {
-    removeOneCoffeeUnity(coffeeId);
+    removeOneCoffeeUnity(id);
   }
 
   return (

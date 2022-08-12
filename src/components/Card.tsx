@@ -47,7 +47,7 @@ export function Card({ coffee }: CardProps) {
           </strong>
         </div>
         <div className="flex items-center gap-2">
-          <PlusOrMinus quantity={quantity} coffeeId={id} />
+          <PlusOrMinus {...coffee} />
           <AddToCart coffee={coffee} />
         </div>
       </div>

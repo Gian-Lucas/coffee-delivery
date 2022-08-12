@@ -11,7 +11,8 @@ export interface Coffee {
 interface CartContextData {
   cartCoffees: Coffee[];
   addCoffeeToCart: (coffee: Coffee) => void;
-  addOneCoffeeUnity: (coffeeId: string) => void;
+  removeCoffeeFromCart: (coffeeId: string) => void;
+  addOneCoffeeUnity: (coffee: Coffee) => void;
   removeOneCoffeeUnity: (coffeeId: string) => void;
 }
 
@@ -41,14 +42,43 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       return [...state, newCoffee];
     });
 
-    console.log(coffee.title, "adicionado no carrinho");
+    console.log(newCoffee, "adicionado no carrinho");
   }
 
-  function addOneCoffeeUnity(coffeeId: string) {
-    console.log(coffeeId);
+  function removeCoffeeFromCart(coffeeId: string) {
+    const cartCoffeesWithoutOneCoffee = cartCoffees.filter(
+      (coffee) => coffee.id !== coffeeId
+    );
+
+    setCartCoffees(cartCoffeesWithoutOneCoffee);
+  }
+
+  function addOneCoffeeUnity(coffee: Coffee) {
+    console.log(coffee.id);
   }
   function removeOneCoffeeUnity(coffeeId: string) {
-    console.log(coffeeId);
+    const coffeeToRemoveOneUnity = cartCoffees.find(
+      (coffee) => coffee.id === coffeeId
+    );
+
+    if (coffeeToRemoveOneUnity?.quantity === 0) return;
+
+    if (coffeeToRemoveOneUnity?.quantity === 1) {
+      removeCoffeeFromCart(coffeeId);
+      return;
+    }
+
+    const cartCoffeesWithOneCoffeeUnityUpdated = cartCoffees.map((coffee) => {
+      if (coffee.id === coffeeId) {
+        return {
+          ...coffee,
+          quantity: coffee.quantity - 1,
+        };
+      }
+      return { ...coffee };
+    });
+
+    setCartCoffees(cartCoffeesWithOneCoffeeUnityUpdated);
   }
 
   return (
@@ -58,6 +88,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         removeOneCoffeeUnity,
         addOneCoffeeUnity,
         addCoffeeToCart,
+        removeCoffeeFromCart,
       }}
     >
       {children}
