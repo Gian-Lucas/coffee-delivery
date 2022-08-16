@@ -16,7 +16,7 @@ interface CardProps {
 }
 
 export function Card({ coffee }: CardProps) {
-  const { id, img, types, title, description, price, quantity } = coffee;
+  const { img, types, title, description, price } = coffee;
 
   return (
     <div className="w-64 h-[19.375rem] bg-base-card text-center rounded-tl-md rounded-br-md rounded-tr-[2.25rem] rounded-bl-[2.25rem]">

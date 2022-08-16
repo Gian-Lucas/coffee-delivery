@@ -1,10 +1,4 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from "phosphor-react";
+import { CurrencyDollar, MapPinLine } from "phosphor-react";
 import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +6,6 @@ import { CartCards } from "../components/CartCards";
 import { InputGridContainer } from "../components/InputGridContainer";
 import { PaymentMethod } from "../components/PaymentMethod";
 import { Prices } from "../components/Prices";
-import { Select } from "../components/Select";
 import { CartContext } from "../contexts/CartContext";
 import { FormContext } from "../contexts/FormContext";
 

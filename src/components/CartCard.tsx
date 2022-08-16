@@ -5,7 +5,7 @@ import { RemoveFromCart } from "./RemoveFromCart";
 type CartCardProps = Coffee;
 
 export function CartCard(coffee: CartCardProps) {
-  const { img, title, price, quantity, id } = coffee;
+  const { img, title, price, id } = coffee;
   return (
     <div className="flex gap-5 py-2 pb-[1.875rem] px-1 border-b">
       <img src={img} className="w-16" alt="" />
