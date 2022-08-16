@@ -31,12 +31,14 @@ const inputStyle =
   "rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm ";
 
 export function Checkout() {
+  const { saveFormData, formData } = useContext(FormContext);
+  const { cartCoffees, clearCart } = useContext(CartContext);
+  const { cep, city, neighborhood, number, street, uf, complement } = formData;
+
   const [paymentType, setPaymentType] = useState<"credit" | "debit" | "money">(
-    "credit"
+    formData.paymentType ? formData.paymentType : "credit"
   );
   const { register, handleSubmit } = useForm<FormData>();
-  const { saveFormData } = useContext(FormContext);
-  const { cartCoffees, clearCart } = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -83,6 +85,7 @@ export function Checkout() {
           <div className="mt-8 flex flex-col gap-4">
             <InputGridContainer>
               <input
+                value={cep}
                 {...register("cep", { required: true })}
                 className={inputStyle + "col-span-3"}
                 placeholder="CEP"
@@ -90,6 +93,7 @@ export function Checkout() {
             </InputGridContainer>
 
             <input
+              value={street}
               {...register("street", { required: true })}
               placeholder="Rua"
               className={inputStyle}
@@ -97,11 +101,13 @@ export function Checkout() {
 
             <InputGridContainer>
               <input
+                value={number}
                 {...register("number", { required: true })}
                 className={inputStyle + "col-span-3"}
                 placeholder="Número"
               />
               <input
+                value={complement}
                 {...register("complement")}
                 className={inputStyle + "col-span-5"}
                 placeholder="Complemento (opcional)"
@@ -110,16 +116,19 @@ export function Checkout() {
 
             <InputGridContainer>
               <input
+                value={neighborhood}
                 {...register("neighborhood", { required: true })}
                 className={inputStyle + "col-span-3"}
                 placeholder="Bairro"
               />
               <input
+                value={city}
                 {...register("city", { required: true })}
                 className={inputStyle + "col-span-4"}
                 placeholder="Cidade"
               />
               <input
+                value={uf}
                 {...register("uf", { required: true })}
                 className={inputStyle + "col-span-1"}
                 placeholder="UF"

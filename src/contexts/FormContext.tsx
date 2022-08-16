@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface FormContextData {
   formData: FormData;
@@ -23,7 +23,23 @@ interface FormData {
 }
 
 export function FormContextProvider({ children }: FormContextProviderProps) {
-  const [formData, setFormData] = useState({} as FormData);
+  const [formData, setFormData] = useState(() => {
+    const formDataStoredAsJSON = localStorage.getItem(
+      "@coffee-delivery:form-data-1.0.0"
+    );
+
+    if (formDataStoredAsJSON) {
+      return JSON.parse(formDataStoredAsJSON);
+    }
+
+    return {} as FormData;
+  });
+
+  useEffect(() => {
+    const formDataJSON = JSON.stringify(formData);
+
+    localStorage.setItem("@coffee-delivery:form-data-1.0.0", formDataJSON);
+  }, [formData]);
 
   function saveFormData(data: FormData) {
     setFormData(data);
