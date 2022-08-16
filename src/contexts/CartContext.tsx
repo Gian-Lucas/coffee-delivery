@@ -14,6 +14,7 @@ interface CartContextData {
   removeCoffeeFromCart: (coffeeId: string) => void;
   addOneCoffeeUnity: (coffee: Coffee) => void;
   removeOneCoffeeUnity: (coffeeId: string) => void;
+  clearCart: () => void;
 }
 
 export const CartContext = createContext({} as CartContextData);
@@ -25,11 +26,14 @@ interface CartContextProviderProps {
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartCoffees, setCartCoffees] = useState<Coffee[]>([]);
 
+  function clearCart() {
+    setCartCoffees([]);
+  }
+
   function addCoffeeToCart(coffee: Coffee) {
     const isCoffeeInCart = cartCoffees.find((cof) => cof.id === coffee.id);
 
     if (isCoffeeInCart) {
-      console.log(coffee.title, "está no carrinho");
       return;
     }
 
@@ -41,8 +45,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     setCartCoffees((state) => {
       return [...state, newCoffee];
     });
-
-    console.log(newCoffee, "adicionado no carrinho");
   }
 
   function removeCoffeeFromCart(coffeeId: string) {
@@ -106,6 +108,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addOneCoffeeUnity,
         addCoffeeToCart,
         removeCoffeeFromCart,
+        clearCart,
       }}
     >
       {children}

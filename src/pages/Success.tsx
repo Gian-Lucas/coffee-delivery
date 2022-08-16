@@ -1,7 +1,12 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
+import { useContext } from "react";
 import coffeeBike from "../assets/coffee-bike.svg";
+import { paymentTypes } from "../components/Select";
+import { FormContext } from "../contexts/FormContext";
 
 export function Success() {
+  const { formData } = useContext(FormContext);
+  const { street, city, number, uf, neighborhood, paymentType } = formData;
   return (
     <main>
       <div>
@@ -20,8 +25,12 @@ export function Success() {
               <MapPin weight="fill" />
             </div>
             <span className="leading-5">
-              Entrega em <strong>Rua João Daniel Martinelli, 102</strong> <br />
-              Farrapos - Porto Alegre, RS
+              Entrega em{" "}
+              <strong>
+                {street}, {number}
+              </strong>{" "}
+              <br />
+              {neighborhood} - {city}, {uf}
             </span>
           </div>
           <div className="flex items-center gap-3">
@@ -37,7 +46,8 @@ export function Success() {
               <CurrencyDollar weight="fill" />
             </div>
             <span className="leading-5">
-              Pagamento na entrega <br /> <strong>Cartão de crédito</strong>
+              Pagamento na entrega <br />{" "}
+              <strong>{paymentTypes[paymentType]}</strong>
             </span>
           </div>
         </div>

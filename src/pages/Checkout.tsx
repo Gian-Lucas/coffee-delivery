@@ -5,21 +5,58 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { FormEvent } from "react";
+import { useContext, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { CartCards } from "../components/CartCards";
-import { Input } from "../components/Input";
 import { InputGridContainer } from "../components/InputGridContainer";
+import { PaymentMethod } from "../components/PaymentMethod";
 import { Prices } from "../components/Prices";
 import { Select } from "../components/Select";
+import { CartContext } from "../contexts/CartContext";
+import { FormContext } from "../contexts/FormContext";
+
+interface FormData {
+  cep: string;
+  street: string;
+  number: string;
+  complement?: string;
+  neighborhood: string;
+  city: string;
+  uf: string;
+  paymentType: "credit" | "debit" | "money";
+}
+
+const inputStyle =
+  "rounded p-3 bg-base-input border border-base-button focus:outline-yellow-dark placeholder:text-base-label placeholder:text-sm ";
 
 export function Checkout() {
-  function handleConfirmSubmit(e: FormEvent) {
-    e.preventDefault();
+  const [paymentType, setPaymentType] = useState<"credit" | "debit" | "money">(
+    "credit"
+  );
+  const { register, handleSubmit } = useForm<FormData>();
+  const { saveFormData } = useContext(FormContext);
+  const { cartCoffees, clearCart } = useContext(CartContext);
+
+  const navigate = useNavigate();
+
+  function changePaymentType(paymentType: "credit" | "debit" | "money") {
+    setPaymentType(paymentType);
   }
+
+  const handleConfirmSubmit: SubmitHandler<FormData> = (data) => {
+    saveFormData({
+      ...data,
+      paymentType,
+    });
+
+    clearCart();
+    navigate("/success");
+  };
 
   return (
     <form
-      onSubmit={handleConfirmSubmit}
+      onSubmit={handleSubmit(handleConfirmSubmit)}
       className="grid grid-cols-5 gap-8"
       action=""
     >
@@ -45,23 +82,48 @@ export function Checkout() {
 
           <div className="mt-8 flex flex-col gap-4">
             <InputGridContainer>
-              <Input className="col-span-3" placeholder="CEP" />
+              <input
+                {...register("cep", { required: true })}
+                className={inputStyle + "col-span-3"}
+                placeholder="CEP"
+              />
             </InputGridContainer>
 
-            <Input placeholder="Rua" />
+            <input
+              {...register("street", { required: true })}
+              placeholder="Rua"
+              className={inputStyle}
+            />
 
             <InputGridContainer>
-              <Input className="col-span-3" placeholder="Número" />
-              <Input
-                className="col-span-5"
+              <input
+                {...register("number", { required: true })}
+                className={inputStyle + "col-span-3"}
+                placeholder="Número"
+              />
+              <input
+                {...register("complement")}
+                className={inputStyle + "col-span-5"}
                 placeholder="Complemento (opcional)"
               />
             </InputGridContainer>
 
             <InputGridContainer>
-              <Input className="col-span-3" placeholder="Bairro" />
-              <Input className="col-span-4" placeholder="Cidade" />
-              <Input className="col-span-1" placeholder="UF" />
+              <input
+                {...register("neighborhood", { required: true })}
+                className={inputStyle + "col-span-3"}
+                placeholder="Bairro"
+              />
+              <input
+                {...register("city", { required: true })}
+                className={inputStyle + "col-span-4"}
+                placeholder="Cidade"
+              />
+              <input
+                {...register("uf", { required: true })}
+                className={inputStyle + "col-span-1"}
+                placeholder="UF"
+              />
             </InputGridContainer>
           </div>
         </div>
@@ -81,23 +143,10 @@ export function Checkout() {
             </div>
           </header>
 
-          <div className="mt-8 grid grid-cols-3 gap-3">
-            <Select
-              icon={<CreditCard size={16} />}
-              title="CARTÃO DE CRÉDITO"
-              isSelected={false}
-            />
-            <Select
-              icon={<Money size={16} />}
-              title="CARTÃO DE DÉBITO"
-              isSelected={true}
-            />
-            <Select
-              icon={<Bank size={16} />}
-              title="DINHEIRO"
-              isSelected={false}
-            />
-          </div>
+          <PaymentMethod
+            changePaymentType={changePaymentType}
+            paymentType={paymentType}
+          />
         </div>
       </div>
 
@@ -112,7 +161,10 @@ export function Checkout() {
           <div className="flex flex-col gap-3">
             <Prices />
 
-            <button className="mt-3 text-sm text-white bg-yellow py-3 px-2 rounded-md transition-colors hover:bg-yellow-dark font-bold">
+            <button
+              disabled={cartCoffees.length === 0}
+              className="mt-3 text-sm text-white bg-yellow py-3 px-2 rounded-md transition-colors hover:bg-yellow-dark font-bold disabled:cursor-not-allowed"
+            >
               CONFIRMAR PEDIDO
             </button>
           </div>
