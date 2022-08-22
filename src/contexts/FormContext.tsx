@@ -23,23 +23,7 @@ interface FormData {
 }
 
 export function FormContextProvider({ children }: FormContextProviderProps) {
-  const [formData, setFormData] = useState(() => {
-    const formDataStoredAsJSON = localStorage.getItem(
-      "@coffee-delivery:form-data-1.0.0"
-    );
-
-    if (formDataStoredAsJSON) {
-      return JSON.parse(formDataStoredAsJSON);
-    }
-
-    return {} as FormData;
-  });
-
-  useEffect(() => {
-    const formDataJSON = JSON.stringify(formData);
-
-    localStorage.setItem("@coffee-delivery:form-data-1.0.0", formDataJSON);
-  }, [formData]);
+  const [formData, setFormData] = useState({} as FormData);
 
   function saveFormData(data: FormData) {
     setFormData(data);
